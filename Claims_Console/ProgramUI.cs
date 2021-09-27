@@ -50,7 +50,7 @@ namespace Claims_Console
                         break;
                     case "3": // Enter a New Claim
                         validInput = true;
-
+                        CreateClaim();
                         break;
                     case "4": // Exit the program
                         validInput = true;
@@ -137,7 +137,67 @@ namespace Claims_Console
         }
 
         // Method for creating a new claim
+        private void CreateClaim()
+        {
+            Console.Clear();
+            Claim newClaim = new Claim();
 
+            Queue<Claim> claimQueue = _claimRepo.GetAllClaims();
+
+            Console.WriteLine("Enter the ID for this claim:");
+            newClaim.ClaimID = Int32.Parse(Console.ReadLine());
+
+            foreach(Claim claim in claimQueue)
+            {
+                if(newClaim.ClaimID == claim.ClaimID)
+                {
+                    bool duplicateId = true;
+
+                    while(duplicateId)
+                    {
+                        Console.WriteLine("This ID is already in use. Please enter a valid ID for this claim:");
+                        newClaim.ClaimID = Int32.Parse(Console.ReadLine());
+
+                        if(newClaim.ClaimID != claim.ClaimID)
+                        {
+                            duplicateId = false;
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Enter the type for this claim:");
+            newClaim.ClaimType = Console.ReadLine();
+
+            Console.WriteLine("Enter the description of this claim:");
+            newClaim.Description = Console.ReadLine();
+
+            Console.WriteLine("Enter the amount for this claim:");
+            newClaim.ClaimAmount = Decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the date of the incident for this claim (yyyy/mm/dd):");
+            newClaim.DateOfIncident = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the date of this claim (yyyy/mm/dd):");
+            newClaim.DateOfClaim = DateTime.Parse(Console.ReadLine());
+
+            TimeSpan expirationDate = newClaim.DateOfClaim - newClaim.DateOfIncident;
+
+            if(expirationDate.TotalDays <= 30)
+            {
+                newClaim.IsValid = true;
+            }
+            else
+            {
+                newClaim.IsValid = false;
+            }
+
+            _claimRepo.CreateNewClaim(newClaim);
+            Console.WriteLine("This new claim has been created and add to the queue.");
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadKey();
+            MainMenu();
+        }
 
         // Method to seed claims to the queue
         private void SeedClaims()
