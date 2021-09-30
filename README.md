@@ -8,7 +8,7 @@ Below is a list of the applications, along with a brief description.
 
 ## List of Applications
 - **Challege 1: Cafe** In this challenge, the class was tasked to create a console application to all a manager of a cafe to create new menu items, delete menu items, and view all menu items. Each menu item has a number, a name, a description, a list of ingredients, and a price. For this application, I created a menu class, as well as an ingredient class.
-- **Challege 2: Claims** In this challeng we used a queue to manage claims for an insurance company. The application needed to allow the user to create a new claim, process the next claim in the queue, and see all claims currently in the queue. I decided to do something a little extra in this challenge by preventing the user to enter an ID for a new claim that matched if that ID was already in use. To do this, I used the following code within the `CreateNewClaim()` method:
+- **Challege 2: Claims** In this challenge we used a queue to manage claims for an insurance company. The application needed to allow the user to create a new claim, process the next claim in the queue, and see all claims currently in the queue. I decided to do something a little extra in this challenge by preventing the user to enter an ID for a new claim that matched if that ID was already in use. To do this, I used the following code within the `CreateNewClaim()` method:
 ```
 foreach(Claim claim in claimQueue)
 {
