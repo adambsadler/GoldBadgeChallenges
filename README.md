@@ -29,4 +29,4 @@ foreach(Claim claim in claimQueue)
     }
 }
 ```
-- **Challenge 3: Badges** In this challenge, we needed to use a dictionary to manage employee badge information. 
+- **Challenge 3: Badges** In this challenge, we needed to use a dictionary to manage employee badge information. This challenge was a bit of a learning process for me as it was my first time working with dictionaries. 
