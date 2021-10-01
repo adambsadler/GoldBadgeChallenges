@@ -28,7 +28,7 @@ namespace CompanyOutings_Repository
             decimal cost = 0m;
             foreach(Outing outing in allOutings)
             {
-                cost =+ outing.TotalCost;
+                cost += outing.TotalCost;
             }
             return cost;
         }

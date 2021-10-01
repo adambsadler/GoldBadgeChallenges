@@ -146,6 +146,41 @@ namespace CompanyOutings_Console
         {
             Console.Clear();
             List<Outing> allOutings = _outingRepo.GetAllOutings();
+            decimal bowlingTotal = 0m;
+            decimal cookoutTotal = 0m;
+            decimal softballTotal = 0m;
+            decimal golfTotal = 0m;
+
+            foreach(Outing outing in allOutings)
+            {
+                switch(outing.EventType)
+                {
+                    case TypeOfEvent.Bowling:
+                        bowlingTotal += outing.TotalCost;
+                        break;
+                    case TypeOfEvent.Cookout:
+                        cookoutTotal += outing.TotalCost;
+                        break;
+                    case TypeOfEvent.Softball:
+                        softballTotal += outing.TotalCost;
+                        break;
+                    case TypeOfEvent.Golf:
+                        golfTotal += outing.TotalCost;
+                        break;
+                }
+            }
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine($"The total cost for all bowling outings is: ${bowlingTotal}");
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine($"The total cost for cookout outings is: ${cookoutTotal}");
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine($"The total cost for all softball outings is: ${softballTotal}");
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine($"The total cost for all golf outings is: ${golfTotal}");
+            Console.WriteLine("-----------------------------------------------------------");
+            Console.WriteLine("Press any key to return to the main menu.");
+            Console.ReadKey();
+            MainMenu();
         }
 
         // Seed method
