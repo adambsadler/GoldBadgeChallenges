@@ -47,3 +47,7 @@ public List<string> GetValuesByKey(int id)
 }
 ```
 - **Challenge 4: Company Outings** In this challenge, the goal was to create an application where the user could create new company outings, veiw all current company outings, get the total cost of all company outings, and display the total cost of company outings by type. To handle the type of event for each outing, I used an enum to store and access the 4 types of outings. This made it possible to total the cost of each type of outing individually. 
+- **Challenge 5: Greeting** In this challenge, we had to create a database of current, past, and potential customers along with a sepcific email greeting associated with each of those customer types. As with the previous challenge, I used a enum for the 3 customer types to easily identify them in the application. The big challenge for me in this one was figuring out how to sort the list of customers by their last name property. After some trial and error, as well as a bit of research, I came up with this solution to sort the list:
+```
+var sortedList = from customer in allCustomers orderby customer.LastName ascending select customer;
+```
